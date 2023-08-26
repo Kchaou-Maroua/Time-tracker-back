@@ -1,23 +1,13 @@
 import { Module } from '@nestjs/common';
+import { TimesService } from './timers/times.service';
+import { TimeRepository } from './timers/times.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { timesModule } from './Time/times.module';
+import { Time } from './timers/times.entity';
+import { TimesController } from './timers/times.controller';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'maroua',
-      password: 'nestpwd',
-      database: 'nestbd',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true, // En développement seulement, à désactiver en production
-    }),
-    timesModule,
-  ],
-  controllers: [],
-  providers: [],
+  providers: [TimesService],
+  imports: [TypeOrmModule.forFeature([Time, TimeRepository])],
+  controllers: [TimesController],
 })
-// eslint-disable-next-line prettier/prettier
-export class AppModule { }
+export class AppModule {}

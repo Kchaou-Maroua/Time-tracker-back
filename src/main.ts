@@ -1,8 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { TimesController } from './timers/times.controller';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+  app.use('/times', TimesController); // '/time' est le préfixe de l'URL pour ces routes
+
+  await app.listen(5501);
 }
 bootstrap();
