@@ -6,6 +6,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use('/times', TimesController); // '/time' est le préfixe de l'URL pour ces routes
 
-  await app.listen(5501);
+  await app.listen(5173);
 }
 bootstrap();
